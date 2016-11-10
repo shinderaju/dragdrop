@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>ngDraggable</title>
+
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootswatch/2.3.1/spruce/bootstrap.min.css">
+
+    <!-- application dependancies -->
+    <link rel="stylesheet" href="css/style.css">
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script src="bower_components/ngDraggable/ngDraggable.js"></script>
+    <script src="app.js"></script>
+    <script src="controller/mainCtrl.js"></script>
+
+
+</head>
+
+<body ng-app="ExampleApp">
+    <div class="container" ng-controller="MainCtrl">
+        <ul class="draggable-objects" style="padding: 0; margin: 100px 0 24.5px 256px;">
+            <li ng-repeat="obj in draggableObjects">
+                <img ng-drag="true" ng-drag-data="obj" data-allow-transform="true" src="{{obj.img}}" width="100px" height="100px"> </img>
+            </li>
+        </ul>
+        <div ng-drop="true" ng-drop-success="onDropComplete1($data,$event)">
+            <img src="{{obj.img}}" alt="Smiley face" width="100px" height="100px" ng-repeat="obj in droppedObjects1" ng-drag="true" ng-drag-data="obj" >
+        </div>
+    </div>
+</body>
+
+</html>
