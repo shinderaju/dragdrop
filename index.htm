@@ -2,32 +2,37 @@
 <html>
 
 <head>
-
     <title>ngDraggable</title>
-
     <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootswatch/2.3.1/spruce/bootstrap.min.css">
-
     <!-- application dependancies -->
     <link rel="stylesheet" href="css/style.css">
     <script src="bower_components/angular/angular.min.js"></script>
     <script src="bower_components/ngDraggable/ngDraggable.js"></script>
     <script src="app.js"></script>
     <script src="controller/mainCtrl.js"></script>
-
-
 </head>
 
-<body ng-app="ExampleApp">
-    <div class="container" ng-controller="MainCtrl">
-        <ul class="draggable-objects" style="padding: 0; margin: 100px 0 24.5px 256px;">
-            <li ng-repeat="obj in draggableObjects">
-                <img ng-drag="true" ng-drag-data="obj" data-allow-transform="true" src="{{obj.img}}" width="100px" height="100px"> </img>
-            </li>
+<body ng-app="ExampleApp" ng-controller="MainCtrl">
+    <div class="container">
+        <ul style="padding: 0; margin: 100px 0 24.5px 256px; list-style-type: none;">
+            <li> <button id="checkButton" class="btn-primary" ng-click="check()">check</button></li>
+            <li style="margin:10px 0 0 0"> <button id="checkButton" class="btn-primary" ng-click="referesh()">referesh</button></li>
         </ul>
-        <div ng-drop="true" ng-drop-success="onDropComplete1($data,$event)">
-            <img src="{{obj.img}}" alt="Smiley face" width="100px" height="100px" ng-repeat="obj in droppedObjects1" ng-drag="true" ng-drag-data="obj" >
+        <div style="padding: 0; margin: 0 0 0 -300px;">
+            <ul class="draggable-objects">
+                <li ng-repeat="obj in draggableObjects">
+                    <img  ng-drag="true" ng-drag-data="obj" data-allow-transform="true" src="{{obj.img}}" width="100px" height="100px"> </img>
+                </li>
+            </ul>
+        </div><br>
+        <div class="left" ng-drop="true" ng-drop-success="onDropTech($data,$event)">Technical
+            <img id="Tech{{obj.img}}" src="{{obj.img}}" alt="Smiley face" width="100px" height="100px" ng-repeat="obj in droppedTechObj" ng-drag="true" ng-drag-data="obj" style="margin:0px 5px">
+        </div>
+        <div class="right" ng-drop="true" ng-drop-success="onDropNonTech($data,$event)">Non-Technical
+            <img id="nonTech{{obj.img}}" src="{{obj.img}}" alt="Smiley face" width="100px" height="100px" ng-repeat="obj in droppedNonTechObj" ng-drag="true" ng-drag-data="obj" style="margin:0px 5px">
         </div>
     </div>
+    <button id="checkButton" class="btn-primary" ng-click="submit()">submit</button>
 </body>
 
 </html>

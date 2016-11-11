@@ -1,5 +1,5 @@
 angular.module('ExampleApp', ['ngDraggable']).
-controller('MainCtrl', function($scope, $http) {
+controller('MainCtrl', function($scope, $http,$interval) {
 
     $scope.centerAnchor = true;
     $scope.toggleCenterAnchor = function() {
@@ -15,47 +15,82 @@ controller('MainCtrl', function($scope, $http) {
         $scope.draggableObjects = response.statusText;
     });
 
-    //$scope.draggableObjects = [{name:'subject1'}, {name:'subject2'}, {name:'subject3'}];
-    $scope.droppedObjects1 = [];
-    $scope.droppedObjects2 = [];
+    $scope.droppedTechObj = [];
+    $scope.droppedNonTechObj = [];
 
-    $scope.onDropComplete1 = function(data, evt) {
-      console.log("drag success, data:", data.name);
-      console.log("drag success, data:", evt);
-        var index = $scope.droppedObjects1.indexOf(data);
+    /**
+     * drop the  only tech object in only tech draggable area
+     *@ param { object} data
+     * @ param { object} evt
+     *
+     */
+    $scope.onDropTech = function(data, evt) {
+        var index = $scope.droppedTechObj.indexOf(data);
         if (index == -1) {
-            $scope.droppedObjects1.push(data);
+            $scope.droppedTechObj.push(data);
         }
     }
 
-
-    // $scope.onDragSuccess1 = function(data, evt) {
-    //   console.log("drag success, data:", data);
-    //     var index = $scope.droppedObjects1.indexOf(data);
-    //     alert(index);
-    //     if (index > -1) {
-    //         $scope.droppedObjects1.splice(index, 1);
-    //     }
-    // }
-
-
-    // $scope.onDragSuccess2 = function(data, evt) {
-    //     var index = $scope.droppedObjects2.indexOf(data);
-    //     if (index > -1) {
-    //         $scope.droppedObjects2.splice(index, 1);
-    //     }
-    // }
-    //
-    //
-    // $scope.onDropComplete2 = function(data, evt) {
-    //     var index = $scope.droppedObjects2.indexOf(data);
-    //     if (index == -1) {
-    //         $scope.droppedObjects2.push(data);
-    //     }
-    // }
-
-    var inArray = function(array, obj) {
-        var index = array.indexOf(obj);
+    /**
+     * drop the  only nontech object in only nontech draggable area
+     *@ param { object} data
+     *@ param { object} evt
+     *
+     */
+    $scope.onDropNonTech = function(data, evt) {
+        var index = $scope.droppedNonTechObj.indexOf(data);
+        if (index == -1) {
+            $scope.droppedNonTechObj.push(data);
+        }
     }
 
+    /**
+     * refresh the dragable area
+     *
+     */
+    $scope.referesh = function() {
+        $scope.droppedTechObj = [];
+        $scope.droppedNonTechObj = [];
+    }
+
+    /**
+     * drop object in its proper dragable area
+     *@ param { object} item
+     *
+     */
+    $scope.check = function() {
+        $scope.droppedTechObj = [];
+        $scope.droppedNonTechObj = [];
+        for (var i = 0; i < $scope.draggableObjects.length; i++) {
+            if ($scope.draggableObjects[i].category == "Technical") {
+                $scope.onDropTech($scope.draggableObjects[i]);
+            } else {
+                $scope.onDropNonTech($scope.draggableObjects[i]);
+            }
+        }
+        $interval($scope.submit,10,1);
+    }
+
+    /**
+     * validate the dropped object
+     *@ param { object} item
+     *
+     */
+    $scope.submit = function() {
+      console.log("inside submit");
+        for (var i = 0; i < $scope.droppedTechObj.length; i++) {
+            if ($scope.droppedTechObj[i].category == "Technical") {
+                document.getElementById("Tech" + $scope.droppedTechObj[i].img).style.border = "thick solid #00ff00";
+            } else {
+                document.getElementById("Tech" + $scope.droppedTechObj[i].img).style.border = "thick solid #ff0000";
+            }
+        }
+        for (var i = 0; i < $scope.droppedNonTechObj.length; i++) {
+            if ($scope.droppedNonTechObj[i].category == "Non-Technical") {
+                document.getElementById("nonTech" + $scope.droppedNonTechObj[i].img).style.border = "thick solid #00ff00";
+            } else {
+                document.getElementById("nonTech" + $scope.droppedNonTechObj[i].img).style.border = "thick solid #ff0000";
+            }
+        }
+    }
 });
