@@ -1,0 +1,23 @@
+
+<div class="container" ng-controller="dragDropCtrl">
+    <ul class="buttons">
+        <li> <button id="checkButton" class="btn-primary" ng-click="check()">check</button></li>
+        <li style="margin:10px 0 0 0"> <button id="checkButton" class="btn-primary" ng-click="referesh()">referesh</button></li>
+    </ul>
+    <div id="draggable-objects">
+        <ul class="draggable-objects">
+            <li ng-repeat="obj in draggableObjects">
+                <img ng-drag="true" ng-drag-data="obj" data-allow-transform="true" src="{{obj.img}}"> </img>
+            </li>
+        </ul>
+    </div><br>
+    <div class="left" ng-drop="true" ng-drop-success="onDropTech($data,$event)">Technical
+        <img class="droppedObj" id="Tech{{obj.img}}" src="{{obj.img}}" alt="Smiley face" ng-repeat="obj in droppedTechObj" ng-drag="true" ng-drag-data="obj">
+    </div>
+    <div class="right" ng-drop="true" ng-drop-success="onDropNonTech($data,$event)">Non-Technical
+        <img class="droppedObj" id="nonTech{{obj.img}}" src="{{obj.img}}" alt="Smiley face" ng-repeat="obj in droppedNonTechObj" ng-drag="true" ng-drag-data="obj">
+    </div>
+    <br></br>
+    <br></br>
+    <button id="submitButton" class="btn-primary" ng-click="submit()">submit</button>
+</div>

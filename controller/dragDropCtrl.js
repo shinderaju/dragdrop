@@ -1,11 +1,17 @@
-angular.module('ExampleApp', ['ngDraggable']).
-controller('MainCtrl', function($scope, $http,$interval) {
-
+var app = angular.module('ELearningApp');
+app.controller('dragDropCtrl', function($scope, $http,$interval) {
+console.log("inside controller");
     $scope.centerAnchor = true;
     $scope.toggleCenterAnchor = function() {
         $scope.centerAnchor = !$scope.centerAnchor
     }
 
+    /**
+     * get json data from json file
+     *@ param { string} url
+     *
+     *
+     */
     $http({
         method: "GET",
         url: "jsonData.js"
@@ -55,7 +61,7 @@ controller('MainCtrl', function($scope, $http,$interval) {
 
     /**
      * drop object in its proper dragable area
-     *@ param { object} item
+     *
      *
      */
     $scope.check = function() {
@@ -73,7 +79,7 @@ controller('MainCtrl', function($scope, $http,$interval) {
 
     /**
      * validate the dropped object
-     *@ param { object} item
+     *
      *
      */
     $scope.submit = function() {

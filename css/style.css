@@ -1,15 +1,12 @@
-/*[ng-drag]
-{
-	width: 100px;
-	height: 100px;
-  	background:rgba(149, 66, 224, 0.5);
-    	color:white;
-	text-align: center;
-  	padding-top:40px;
- 	display: inline-block;
-	margin:0 10px;
-   	cursor: move;
-  }*/
+.container {
+    height: auto;
+    width: auto;
+}
+
+#draggable-objects {
+    padding: 0;
+    margin: 0 0 0 0px;
+}
 
 ul.draggable-objects:after {
     display: block;
@@ -21,6 +18,11 @@ ul.draggable-objects:after {
     float: left;
     display: block;
     width: 120px;
+    height: 100px;
+}
+
+.draggable-objects img {
+    width: 100px;
     height: 100px;
 }
 
@@ -62,21 +64,228 @@ ul.draggable-objects:after {
     position: relative;
     z-index: 2;
 }
+
 .left {
     float: left;
-		margin-left: -320px;
+    margin-left: 20px;
 }
 
 .right {
     margin-left: 650px;
 }
+
+.droppedObj {
+    margin: 0px 5px;
+    width: 100px;
+    height: 100px;
+}
+
 #checkButton {
     margin-left: 850px;
 }
+
 #correct {
     border-style: solid;
-    border-color:  #00ff00 ;
+    border-color: #00ff00;
 }
+
 #wrong {
-  	border: 5px solid red;
+    border: 5px solid red;
+}
+
+#submitButton {
+    margin-left: 600px;
+}
+
+.buttons {
+    padding: 0;
+    margin: 100px 0 24.5px 256px;
+    list-style-type: none;
+}
+canvas {
+    background: #eee;
+}
+
+@media only screen and (max-width: 1400px) {
+    .background {
+        background-color: black;
+    }
+    .container {
+        height: auto;
+        width: auto;
+    }
+    #draggable-objects {
+        padding: 0;
+        margin: 50px 0 0 0px;
+    }
+    ul.draggable-objects:after {
+        display: block;
+        content: "";
+        clear: both;
+    }
+    .draggable-objects li {
+        float: left;
+        display: block;
+        width: 60px;
+        height: 60px;
+    }
+    .draggable-objects img {
+        width: 50px;
+        height: 50px;
+    }
+    [ng-drag].drag-over {
+        border: solid 1px green;
+    }
+    [ng-drag].dragging {
+        opacity: 0.5;
+    }
+    [ng-drop] {
+        background: rgba(183, 167, 160, 0.23);
+        text-align: center;
+        width: auto;;
+        height: auto;;
+        padding-top: 90px;
+        display: block;
+        margin: 20px auto;
+        position: relative;
+    }
+    [ng-drop].drag-enter {
+        border: solid 5px red;
+    }
+    [ng-drop] span.title {
+        display: block;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 200px;
+        height: 20px;
+        margin-left: -100px;
+        margin-top: -10px;
+    }
+    [ng-drop] div {
+        position: relative;
+        z-index: 2;
+    }
+    .left {
+        float: left;
+        margin-left: 10px;
+    }
+    .right {
+        margin-left: 330px;
+    }
+    .droppedObj {
+        margin: 0px 5px;
+        width: 40px;
+        height: 40px;
+    }
+    #checkButton {
+        margin-left: 400px;
+    }
+    #correct {
+        border-style: solid;
+        border-color: #00ff00;
+    }
+    #wrong {
+        border: 5px solid red;
+    }
+    #submitButton {
+        margin-left: 290px;
+    }
+    .buttons {
+        padding: 0;
+        margin: 200px 20px 3px 60px;
+        list-style-type: none;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    .background {
+        background-color: red;
+    }
+    .container {
+        height: auto;
+        width: auto;
+    }
+    #draggable-objects {
+        padding: 0;
+        margin: 50px 0 0 0px;
+    }
+    ul.draggable-objects:after {
+        display: block;
+        content: "";
+        clear: both;
+    }
+    .draggable-objects li {
+        float: left;
+        display: block;
+        width: 60px;
+        height: 60px;
+    }
+    .draggable-objects img {
+        width: 50px;
+        height: 50px;
+    }
+    [ng-drag].drag-over {
+        border: solid 1px green;
+    }
+    [ng-drag].dragging {
+        opacity: 0.5;
+    }
+    [ng-drop] {
+        background: rgba(183, 167, 160, 0.23);
+        text-align: center;
+        width: auto;
+        height: auto;;
+        padding-top: 90px;
+        display: block;
+        margin: 20px auto;
+        position: relative;
+    }
+    [ng-drop].drag-enter {
+        border: solid 5px red;
+    }
+    [ng-drop] span.title {
+        display: block;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 200px;
+        height: 20px;
+        margin-left: -100px;
+        margin-top: -10px;
+    }
+    [ng-drop] div {
+        position: relative;
+        z-index: 2;
+    }
+    .left {
+        float: left;
+        margin-left: 10px;
+    }
+    .right {
+        margin-left: 230px;
+    }
+    .droppedObj {
+        margin: 0px 5px;
+        width: 30px;
+        height: 30px;
+    }
+    #checkButton {
+        margin-left: 400px;
+    }
+    #correct {
+        border-style: solid;
+        border-color: #00ff00;
+    }
+    #wrong {
+        border: 5px solid red;
+    }
+    #submitButton {
+        margin-left: 200px;
+    }
+    .buttons {
+        padding: 0;
+        margin: 200px 20px 3px -120px;
+        list-style-type: none;
+    }
 }
